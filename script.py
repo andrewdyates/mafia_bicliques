@@ -1,7 +1,11 @@
 #!/usr/bin/python
 import sys
+import json
+from geo_api import *
 
-def main():
+
+def main(gpl1=None, gpl2=None):
+  
   # load GPLs
   # load missing row numbers
   # load graph
