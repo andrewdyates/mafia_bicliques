@@ -12,6 +12,33 @@ class TestAll(unittest.TestCase):
     self.assertEqual(g.bicliques[0]['rows'], [28])
     self.assertEqual(g.bicliques[4]['cols'], [12569])
     self.assertEqual(len(g.bicliques), 7)
+    
+  def test_make_row_map_1(self):
+    n = 10
+    missing_rows = set([1,2,3,4,5,6,7,8])
+    q = make_row_map(n, missing_rows)
+    self.assertEqual(q, {0:0, 1:9})
+
+  def test_make_row_map_2(self):
+    n = 8
+    missing_rows = set([1,2,3,4,5,6,7,8])
+    self.assertRaises(AssertionError, make_row_map, n, missing_rows)
+  def test_make_row_map_3(self):
+    n = 5
+    missing_rows = set()
+    q = make_row_map(n, missing_rows)
+    self.assertEqual(q, {0:0, 1:1, 2:2, 3:3, 4:4})
+  def test_make_row_map_4(self):
+    n = 10
+    missing_rows = set([0,1,2,3,4,5,6,7,8,9])
+    q = make_row_map(n, missing_rows)
+    self.assertEqual(q, {})
+  def test_make_row_map_5(self):
+    n = 6
+    missing_rows = set([2,4])
+    q = make_row_map(n, missing_rows)
+    self.assertEqual(q, {0:0, 1:1, 2:3, 3:5})
+
 
 
 SAMPLE_GRAPH = """29 ; 637 956 2853 2941 2991 3053 3130 3148 3663 4024 4104 4739 6069 6951 7497 7578 8185 8737 8847 9272 9790 11691 12778 13147 13470 14237 14301 14670 14734 15260 15526 15539 15896 16340 16509 16796 16853 16902 17285 17350 17760 18353 18509 18731 19650 19662 19696 19798 19876 19891 19904 20407 20437 20624 20849 21542 ; density: 0.982143

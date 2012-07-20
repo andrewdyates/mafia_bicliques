@@ -1,7 +1,9 @@
 #!/usr/bin/python
 """Convert graph row IDs into labels.
 
-Example Use
+EXAMPLE USE:
+
+
 """
 import sys
 from geo_api.lite import *
@@ -11,17 +13,12 @@ from __init__ import *
 
 def main(gpl_rows_file=None, gpl_rows_col=None, gpl_cols_file=None, gpl_cols_col=None, missing_rows_fname=None, graph_fname=None):
   assert gpl_rows_file and gpl_cols_file and missing_rows_fname and gpl_rows_col and gpl_cols_col and graph_fname
-  # load GPLs
   gplrow, gplcol = GPL_Lite(gpl_rows_file), GPL_Lite(gpl_cols_file)
-  # Load missing row numbers
-  missing_rows = [int(s) for s in open(missing_rows_fname) if s]
-  # load graph
+  missing_rows = set([int(s) for s in open(missing_rows_fname) if s])
   G = DensityMergedGraph(graph_fname)
   # map row ids in graph to gene symbols
+  row_map = make_row_map(len(gplrow.rows), missing_rows)
   # output result
-  print G
-
-
       
       
 
