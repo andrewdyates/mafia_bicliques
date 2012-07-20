@@ -4,6 +4,7 @@ from StringIO import StringIO
 
 
 class TestAll(unittest.TestCase):
+  
   def test_density_merged_graph_construction(self):
     fp = StringIO(SAMPLE_GRAPH)
     g = DensityMergedGraph(fp)
