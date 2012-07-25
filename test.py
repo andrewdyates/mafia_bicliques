@@ -11,7 +11,7 @@ class TestAll(unittest.TestCase):
     self.assertTrue(g)
     self.assertEqual(type(g.__str__()), str)
     self.assertEqual(g.bicliques[0]['rows'], [28])
-    self.assertEqual(g.bicliques[4]['cols'], [12569])
+    self.assertEqual(g.bicliques[4]['cols'], [12568])
     self.assertEqual(len(g.bicliques), 7)
     
   def test_make_row_map_1(self):
