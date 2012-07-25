@@ -1,4 +1,4 @@
 mafia_bicliques
 ===============
 
-Using MAFIA association mining, generate approximately maximal bi-cliques from molecular cross dependency matrices
+MAFIA association mining biclique objects which handle indexing discrepancies, missing rows, and index-to-symbol reassignment from GPL file definitions.

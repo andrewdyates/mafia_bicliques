@@ -3,11 +3,10 @@
 
 EXAMPLE USE:
 
-python gpl_rows_file=$HOME/gpl8178.txt gpl_rows_col=miRNA_ID gpl_cols_file=$HOME/gpl6104.txt gpl_cols_col=Symbol missing_rows_fname=$HOME/missing.txt graph_fname=$HOME/mygraph.output
+python $HOME/mafia_bicliques/script.py gpl_rows_file=$HOME/GPL8178.txt gpl_rows_col=miRNA_ID gpl_cols_file=$HOME/GPL6104.txt gpl_cols_col=Symbol missing_rows_fname=$HOME/gpl8178_gpl6104_spearman_-0.6_missing.txt graph_fname=$HOME/gpl8178_gpl6104_spearman_-0.6_0.05_fci.output
 """
 import sys
 from geo_api.lite import *
-import collections
 from __init__ import *
 
 
@@ -20,7 +19,7 @@ def main(gpl_rows_file=None, gpl_rows_col=None, gpl_cols_file=None, gpl_cols_col
     
   missing_rows = set([int(s) for s in open(missing_rows_fname) if s])
   
-  G = DensityMergedGraph(graph_fname)
+  G = DensityMergedGraph(open(graph_fname))
   # map row ids in graph to gene symbols
   row_map = make_row_map(len(gplrow.rows), missing_rows)
 
