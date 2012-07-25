@@ -57,6 +57,7 @@ class TestMafiaBiclique(unittest.TestCase):
     self.assertEqual(g.missing_rows, set((0,2,4)))
     self.assertEqual(g.bicliques, [ \
       (set((1,3)), set((0,1,2,4))), (set((5,)), set((0,1,2,4,5)))])
+    
 
     # of: (0 1 2 3 4 5), (0 1 2 3 4 5)
     # row 0, 2, and 4 are missing leaving (1,3,5) => (1,2,3)
@@ -64,7 +65,7 @@ class TestMafiaBiclique(unittest.TestCase):
 #1 3 => 0 1 2 4
 #5 => 0 1 2 4 5
 DUMMY_BICLIQUE = """1 2 ; 0 1 2 4 
-3 ; 0 1 2 4 5
+3 ; 0 1 2 4 5 
 """
 DUMMY_MISSING = "0\n2\n4"
 
