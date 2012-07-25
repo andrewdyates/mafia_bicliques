@@ -19,14 +19,19 @@ class MafiaBiclique(object):
     self.bicliques = []
     
     for line in fp:
-      rows, cols = [set(map(int, s.strip().split(' '))) for s in line.split(';')]
+      rows, cols = [map(int, s.strip().split(' ')) for s in line.split(';')]
       rows = map(lambda x: self.row_map[x-1], rows) # remap rows
       self.row_set.update(rows)
       self.col_set.update(cols)
-      self.bicliques.append((rows,cols))
+      self.bicliques.append((set(rows), set(cols)))
       
   def __str__(self):
     return "{{DensityMergedGraph: " + str(self.bicliques) + "}}"
+  
+  def yield_lines_to_density_mapper(self):
+    for rows, cols in self.bicliques:
+      # index from 1
+      yield " ".join(map(lambda x:x+1, rows)) + " ; " + " ".join(map(lambda x:x+1, rows)) + " \n"
 
 
 class DensityMergedGraph(object):

@@ -49,19 +49,25 @@ class TestMafiaBiclique(unittest.TestCase):
     self.assertEqual(missing_set, set([0,2,4]))
     n = 6
     g = MafiaBiclique(fp=fp_biclique, missing_rows=missing_set, n=n)
+    # test construction
     self.assertTrue(g)
     self.assertEqual(len(g.bicliques), 2)
     self.assertEqual(g.row_set, set((1,3,5)))
     self.assertEqual(g.col_set, set((0,1,2,4,5)))
     self.assertEqual(g.missing_rows, set((0,2,4)))
+    self.assertEqual(g.bicliques, [ \
+      (set((1,3)), set((0,1,2,4))), (set((5,)), set((0,1,2,4,5)))])
 
     # of: (0 1 2 3 4 5), (0 1 2 3 4 5)
-    # row 0, 2, and 4 are missing => (1,2,3)
+    # row 0, 2, and 4 are missing leaving (1,3,5) => (1,2,3)
     # no column 3
+#1 3 => 0 1 2 4
+#5 => 0 1 2 4 5
 DUMMY_BICLIQUE = """1 2 ; 0 1 2 4 
 3 ; 0 1 2 4 5
 """
 DUMMY_MISSING = "0\n2\n4"
+
 
 
 SAMPLE_GRAPH_DENSITY = """29 ; 637 956 2853 2941 2991 3053 3130 3148 3663 4024 4104 4739 6069 6951 7497 7578 8185 8737 8847 9272 9790 11691 12778 13147 13470 14237 14301 14670 14734 15260 15526 15539 15896 16340 16509 16796 16853 16902 17285 17350 17760 18353 18509 18731 19650 19662 19696 19798 19876 19891 19904 20407 20437 20624 20849 21542 ; density: 0.982143
