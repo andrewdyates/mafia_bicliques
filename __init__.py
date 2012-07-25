@@ -28,10 +28,10 @@ class MafiaBiclique(object):
   def __str__(self):
     return "{{DensityMergedGraph: " + str(self.bicliques) + "}}"
   
-  def yield_lines_to_density_mapper(self):
+  def yield_lines_to_density_merger(self):
     for rows, cols in self.bicliques:
       # index from 1
-      yield " ".join(map(lambda x:x+1, rows)) + " ; " + " ".join(map(lambda x:x+1, rows)) + " \n"
+      yield " ".join(map(lambda x:str(x+1), rows)) + " ; " + " ".join(map(lambda x:str(x+1), cols)) + " \n"
 
 
 class DensityMergedGraph(object):

@@ -58,15 +58,29 @@ class TestMafiaBiclique(unittest.TestCase):
     self.assertEqual(g.bicliques, [ \
       (set((1,3)), set((0,1,2,4))), (set((5,)), set((0,1,2,4,5)))])
 
+  def test_printer(self):
+    fp_biclique = StringIO(DUMMY_BICLIQUE)
+    fp_missing = StringIO(DUMMY_MISSING)
+    missing_set = get_missing_set(fp_missing)
+    g = MafiaBiclique(fp=fp_biclique, missing_rows=missing_set, n=6)
+    self.assertTrue(g)
+    self.assertEqual(DUMMY_BICLIQUE_PRINT, "".join(g.yield_lines_to_density_merger()))
+
+
     # of: (0 1 2 3 4 5), (0 1 2 3 4 5)
     # row 0, 2, and 4 are missing leaving (1,3,5) => (1,2,3)
+    # one-indexed: (2,4,6) => (1,2,3)
     # no column 3
-#1 3 => 0 1 2 4
-#5 => 0 1 2 4 5
+#1 3 => 0 1 2 4 :::: 2 4 => 1 2 3 5 [one-indexed]
+#5 => 0 1 2 4 5 :::: 6 => 1 2 3 5 6 [one-indexed]
 DUMMY_BICLIQUE = """1 2 ; 0 1 2 4 
 3 ; 0 1 2 4 5
 """
 DUMMY_MISSING = "0\n2\n4"
+DUMMY_BICLIQUE_PRINT = """2 4 ; 1 2 3 5 
+6 ; 1 2 3 5 6 
+"""
+
 
 
 
