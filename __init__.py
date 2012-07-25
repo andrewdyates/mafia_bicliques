@@ -28,29 +28,26 @@ class MafiaBiclique(object):
   def __str__(self):
     return "{{DensityMergedGraph: " + str(self.bicliques) + "}}"
   
-  def yield_lines_to_density_mapper(self):
+  def yield_lines_to_density_merger(self):
     for rows, cols in self.bicliques:
       # index from 1
-      yield " ".join(map(lambda x:x+1, rows)) + " ; " + " ".join(map(lambda x:x+1, rows)) + " \n"
+      yield " ".join(map(lambda x:str(x+1), rows)) + " ; " + " ".join(map(lambda x:str(x+1), cols)) + " \n"
 
 
 class DensityMergedGraph(object):
-  """Bicliques from MAFIA.
+  """Bicliques from `GraphMining` program. Indexed from 1, missing rows inserted.
 
-  Note: In graph file, rows are indexed from 1, not zero. Items are indexed from 0.
-  Correct this by subtracting one from every entry in rows.
+  Note: In graph file, rows and cols are indexed from 1, not zero.
+  Correct this by subtracting one from every entry.
   """
-  def __init__(self, fp, missing_rows=None):
-    if missing_rows is None:
-      missing_rows = set([])
+  def __init__(self, fp):
     self.bicliques = [] #rows, cols, density
     for line in fp:
       rows, cols, density = map(lambda s: s.strip().split(' '), line.split(';'))
       self.bicliques.append(
         {'rows': map(lambda x: int(x)-1, rows),
-         'cols': map(int, cols),
-         'density': float(density[1])}
-        )
+         'cols': map(lambda x: int(x)-1, cols),
+         'density': float(density[1])})
   def __str__(self):
     return "{{DensityMergedGraph: " + str(self.bicliques) + "}}"
 

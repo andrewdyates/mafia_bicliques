@@ -2,6 +2,7 @@
 *~
 .#*
 #*
+.DS*
 
 # Packages
 *.egg
