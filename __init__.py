@@ -55,7 +55,8 @@ class DensityMergedGraph(object):
     return "{{DensityMergedGraph: " + str(self.bicliques) + "}}"
 
 def get_missing_set(fp):
-  return set([int(s.strip()) for s in fp])
+  s = set([int(s.strip()) for s in fp])
+  return s
   
 def make_row_map(n, missing_rows):
   """Map row indices from a truncated row list to rows in the full n-row matrix.
