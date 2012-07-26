@@ -42,12 +42,17 @@ class DensityMergedGraph(object):
   """
   def __init__(self, fp):
     self.bicliques = [] #rows, cols, density
+    self.row_set = set()
+    self.col_set = set()
     for line in fp:
       rows, cols, density = map(lambda s: s.strip().split(' '), line.split(';'))
-      self.bicliques.append(
-        {'rows': map(lambda x: int(x)-1, rows),
+      d={'rows': map(lambda x: int(x)-1, rows),
          'cols': map(lambda x: int(x)-1, cols),
-         'density': float(density[1])})
+         'density': float(density[1])}
+      self.row_set.update(d['rows'])
+      self.col_set.update(d['cols'])
+      self.bicliques.append(d)
+      
   def __str__(self):
     return "{{DensityMergedGraph: " + str(self.bicliques) + "}}"
 
