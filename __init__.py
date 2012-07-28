@@ -56,6 +56,14 @@ class DensityMergedGraph(object):
   def __str__(self):
     return "{{DensityMergedGraph: " + str(self.bicliques) + "}}"
 
+  def remap(self, row_map, col_map):
+    for d in self.bicliques:
+      d['rows'] = [row_map[x] for x in d['rows']]
+      d['cols'] = [col_map[x] for x in d['cols']]
+    self.row_set = set([row_map[x] for x in self.row_set])
+    self.col_set = set([col_map[x] for x in self.col_set])
+
+
 def get_missing_set(fp):
   s = set([int(s.strip()) for s in fp])
   return s
