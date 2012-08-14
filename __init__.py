@@ -1,4 +1,5 @@
 #!/usr/bin/python
+"""Objects representing MAFIA output files."""
 
 class MafiaBiclique(object):
   """Bicliques from MAFIA. Rows and columns indexed by zero.

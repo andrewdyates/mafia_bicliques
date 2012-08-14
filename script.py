@@ -2,11 +2,10 @@
 """Convert graph row IDs into labels.
 
 WARNING: requires use of GEO_API
-https://github.com/andrewdyates/geo_api
+  https://github.com/andrewdyates/geo_api
 
 EXAMPLE USE:
-
-python $HOME/mafia_bicliques/script.py gpl_rows_file=$HOME/GPL8178.txt gpl_rows_col=miRNA_ID gpl_cols_file=$HOME/GPL6104.txt gpl_cols_col=Symbol missing_rows_fname=$HOME/gpl8178_gpl6104_spearman_-0.6_missing.txt graph_fname=$HOME/gpl8178_gpl6104_spearman_-0.6_0.05_fci.output
+  python $HOME/mafia_bicliques/script.py gpl_rows_file=$HOME/GPL8178.txt gpl_rows_col=miRNA_ID gpl_cols_file=$HOME/GPL6104.txt gpl_cols_col=Symbol missing_rows_fname=$HOME/gpl8178_gpl6104_spearman_-0.6_missing.txt graph_fname=$HOME/gpl8178_gpl6104_spearman_-0.6_0.05_fci.output
 """
 import sys
 from geo_api.lite import *
